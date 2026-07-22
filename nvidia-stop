@@ -8,8 +8,9 @@ echo "hostname: `hostname`"
 if [ -e nvidia-pids.txt ]; then
     while read pid; do
         kill -s SIGINT $pid
+        wait $pid 2>/dev/null
     done <nvidia-pids.txt
-    find . -name "*stdout.txt" -o -name "*stderr.txt" -o -name "*.txt" | while read line; do
+    find . -name "nvidia-output.txt" -o -name "nvidia-collect-stderrout.txt" | while read line; do
 	echo "Compressing: $line"
 	xz -3 -T 0 $line
     done
