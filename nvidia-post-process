@@ -6,13 +6,8 @@ import sys
 import os
 import lzma
 import re
-import copy
 import math
-import json
-import yaml
-import argparse
-import glob
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 TOOLBOX_HOME = os.environ.get('TOOLBOX_HOME')
@@ -38,9 +33,11 @@ def main():
     # 2025-05-16 14:51:59, 1, NVIDIA A100-SXM4-80GB,   0,   0,  29,    882.4,  81920.0,  81037.6,  63.7,   0
 
     f = 'nvidia-output.txt.xz'
+    if not os.path.exists(f):
+        print("ERROR: %s not found" % f)
+        return 1
+
     with lzma.open(f, 'rt') as file:
-        desc_tput = {'source': 'nvidia-smi', 'type': 'util', 'class': 'throughput'}
-        desc_count = {'source': 'nvidia-smi', 'type': 'mclk', 'class': 'count'}
         file_id = '0'
         for line in file:
             print(line)
@@ -54,11 +51,11 @@ def main():
                     'mem': reggy.group(7),
                     'pwr': reggy.group(19)
                     }
-                dt = datetime.strptime(end_dt, '%Y-%m-%d %X')
+                dt = datetime.strptime(end_dt, '%Y-%m-%d %X').replace(tzinfo=timezone.utc)
                 end_ts = int(math.floor(dt.timestamp() * 1000))
                 for this_type in ('pwr', 'util', 'mem', 'temp'):
                     sample = {'end': end_ts, 'value': values[this_type]}
-                    if this_type in ('temp'):
+                    if this_type in ('temp', 'mem'):
                         this_class = 'count'
                     else:
                         this_class = 'throughput'
@@ -66,7 +63,6 @@ def main():
                     log_sample(file_id, this_desc, names, sample)
             else:
                 print("NO MATCH")
-    file.close
     finish_samples()
     return(0)
 
