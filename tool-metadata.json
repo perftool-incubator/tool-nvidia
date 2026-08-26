@@ -17,7 +17,6 @@
     "nvidia-output.txt.xz",
     "nvidia-pids.txt",
     "nvidia-start-stderrout.txt",
-    "nvidia-stop-stderrout.txt",
-    "nvidia-collect-stderrout.txt.xz"
+    "nvidia-stop-stderrout.txt"
   ]
 }

@@ -25,7 +25,7 @@ Crucible tool for collecting NVIDIA GPU performance metrics (utilization, temper
 ## Architecture
 - `nvidia-start` — Launches `nvidia-collect --interval $interval >nvidia-output.txt &` in background and records PID to `nvidia-pids.txt`
 - `nvidia-collect` — Calls `pynvml.nvmlInit()`, queries all NVIDIA GPUs on the system for utilization rates, temperature, memory stats, and power usage, and prints formatted records
-- `nvidia-stop` — Sends SIGINT to `nvidia-collect`, waits for termination, and compresses `nvidia-output.txt` and `nvidia-collect-stderrout.txt` with xz
+- `nvidia-stop` — Sends SIGINT to `nvidia-collect`, waits for termination, and compresses `nvidia-output.txt` with xz
 - `nvidia-post-process` — Reads `nvidia-output.txt.xz`, parses CSV records, and logs CDM metrics (`source`: `nvidia`, `types`: `pwr`, `util`, `mem`, `temp`)
 
 ## Testing
