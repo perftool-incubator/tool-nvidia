@@ -1,0 +1,22 @@
+{
+  "rickshaw-tool-metadata": {
+    "schema": {
+      "version": "2026.08.11"
+    }
+  },
+  "tool": "nvidia",
+  "description": "NVIDIA GPU performance monitoring via pynvml, collecting periodic GPU utilization, memory usage, temperature, and power consumption metrics.",
+  "cdm_indexed": true,
+  "cdm_sources": [
+    {
+      "source": "nvidia",
+      "types": ["pwr", "util", "mem", "temp"]
+    }
+  ],
+  "output_files": [
+    "nvidia-output.txt.xz",
+    "nvidia-pids.txt",
+    "nvidia-start-stderrout.txt",
+    "nvidia-stop-stderrout.txt"
+  ]
+}
