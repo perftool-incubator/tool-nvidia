@@ -35,8 +35,8 @@ done
 
 
 /bin/rm -f nvidia-pids.txt
-echo "Starting nvidia-collect"
-TZ=UTC S_TIME_FORMAT=ISO nvidia-collect --interval $interval >nvidia-output.txt &
+echo "Starting nvidia-collect.py"
+TZ=UTC S_TIME_FORMAT=ISO nvidia-collect.py --interval $interval >nvidia-output.txt &
 pid=$!
 echo "$pid" >>nvidia-pids.txt
 echo "nvidia pid is $pid"

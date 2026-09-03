@@ -6,12 +6,12 @@
     },
     "tool": "nvidia",
     "controller": {
-        "post-script": "%tool-dir%nvidia-post-process"
+        "post-script": "%tool-dir%nvidia-post-process.py"
     },
     "collector": {
         "files-from-controller": [
             {
-                "src": "%tool-dir%/nvidia-collect",
+                "src": "%tool-dir%/nvidia-collect.py",
                 "dest": "/usr/bin/"
             },
             {
