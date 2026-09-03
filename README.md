@@ -11,4 +11,4 @@ NVIDIA GPU performance monitoring for the [crucible](https://github.com/perftool
 
 ## Integration
 
-Nvidia runs as a profiler tool on endpoint nodes with NVIDIA GPUs. It is allowed on profiler, master, worker, and compute collector roles but blocked on client and server roles. The post-processor (`nvidia-post-process`) converts raw GPU metrics into crucible's canonical metric format.
+Nvidia runs as a profiler tool on endpoint nodes with NVIDIA GPUs. It is allowed on profiler, master, worker, and compute collector roles but blocked on client and server roles. The post-processor (`nvidia-post-process.py`) converts raw GPU metrics into crucible's canonical metric format.
