@@ -9,8 +9,6 @@ import argparse
 from datetime import datetime
 import pynvml
 
-# This executable is deployed into the controller image by rickshaw.
-
 def initialize_nvml():
     """Initialize NVIDIA Management Library."""
     try:
