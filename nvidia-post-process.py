@@ -22,11 +22,11 @@ else:
         print("ERROR: <TOOLBOX_HOME>/python ('%s') does not exist!" % (p))
         exit(2)
     sys.path.append(str(p))
-from toolbox.metrics import log_sample
-from toolbox.metrics import finish_samples
+from toolbox.cdm_metrics import CDMMetrics
 
 def main():
     print('nvidia-post-process')
+    metrics = CDMMetrics()
 
     # timestamp, device_id, device_name, gpu_util(%), mem_util(%), temp(C), used_mem(MiB), total_mem(MiB), free_mem(MiB), power(W), fan(%)
     # 2025-05-16 14:51:59, 0, NVIDIA A100-SXM4-80GB,   0,   0,  31,    882.4,  81920.0,  81037.6,  65.3,   0
@@ -60,10 +60,10 @@ def main():
                     else:
                         this_class = 'throughput'
                     this_desc = {'source': 'nvidia', 'type': this_type, 'class': this_class}
-                    log_sample(file_id, this_desc, names, sample)
+                    metrics.log_sample(file_id, this_desc, names, sample)
             else:
                 print("NO MATCH")
-    finish_samples()
+    metrics.finish_samples()
     return(0)
 
 if __name__ == "__main__":
